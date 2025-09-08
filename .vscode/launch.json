@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Local Debug",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",   // runs the current file
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "AWS_ACCESS_KEY_ID": "test",
+        "AWS_SECRET_ACCESS_KEY": "test",
+        "AWS_DEFAULT_REGION": "us-east-1",
+        "LOCALSTACK_HOST": "localhost",
+        "EDGE_PORT": "4566"
+      }
+    }
+  ]
+}
