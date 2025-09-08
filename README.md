@@ -44,6 +44,22 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+### Dependencies
+
+**Core Application:**
+- `requests` - HTTP client for health checks
+- `PyYAML` - Configuration file parsing
+
+**Testing & Quality:**
+- `pytest` - Testing framework
+
+**AWS & LocalStack Integration:**
+- `boto3` - AWS SDK for Python
+- `awscli-local` - LocalStack-compatible AWS CLI wrapper
+- `localstack-client` - LocalStack service management
+
+> All AWS-related dependencies work seamlessly with LocalStack for local development
+
 ### Basic Usage
 
 ```bash
@@ -86,6 +102,40 @@ monitoring:
 ```
 
 ## Development
+
+### IDE Setup
+
+This project includes VS Code configuration for streamlined development:
+
+```json
+// .vscode/launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Local Debug",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "AWS_ACCESS_KEY_ID": "test",
+        "AWS_SECRET_ACCESS_KEY": "test",
+        "AWS_DEFAULT_REGION": "us-east-1",
+        "LOCALSTACK_HOST": "localhost",
+        "EDGE_PORT": "4566"
+      }
+    }
+  ]
+}
+```
+
+**Features:**
+- Pre-configured LocalStack environment variables
+- Debug support with breakpoints
+- Integrated terminal output
+- One-click debugging for any Python file
 
 ### Running Tests
 
@@ -223,9 +273,12 @@ WantedBy=multi-user.target
   - [ ] Email notifications
   - [ ] Slack/Teams webhook integration
   - [ ] HTML report generation
+  - [ ] Secure credential management (.env files, AWS Secrets Manager)
 - [ ] **Phase 2**: Cloud integration
-  - [ ] AWS Lambda serverless deployment
-  - [ ] CloudWatch metrics and alarms
+  - [ ] LocalStack development environment setup
+  - [ ] AWS Lambda function development and testing
+  - [ ] CloudWatch metrics and alarms (LocalStack)
+  - [ ] Production AWS deployment automation
   - [ ] S3 report storage
 - [ ] **Phase 3**: Advanced features
   - [ ] Docker containerization
