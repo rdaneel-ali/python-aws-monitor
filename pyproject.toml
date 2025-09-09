@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-health-monitor"
+version = "0.1.0"
+description = "A simple health monitoring tool"
+authors = [
+    { name = "Ali Awan", email = "aawan12@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = "GPL-2.0"
+dependencies = [
+    "requests",
+    "PyYAML"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: System :: Monitoring"
+]
+keywords = ["health-check", "url-monitor", "web-dev", "network"]
+
+[project.urls]
+Homepage = "https://github.com/rdaneel-ali/python-health-monitor"
+Source = "https://github.com/rdaneel-ali/python-health-monitor"
+
+[project.scripts]
+python-health-monitor = "python_health_monitor.monitor:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
