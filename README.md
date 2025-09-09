@@ -101,6 +101,39 @@ monitoring:
   parallel_checks: true
 ```
 
+## Architecture
+
+### Design Principles
+
+**Configuration-Driven Design**
+- Externalized settings in YAML for flexibility without code changes
+- Environment-specific configs (development, staging, production)
+
+**Resilience Patterns**
+- Retry logic with configurable attempts and delays
+- Timeout handling to prevent hanging requests
+- Graceful degradation when endpoints fail
+
+**Observability**
+- Structured logging with multiple severity levels
+- File and console output for different use cases
+- Detailed error messages for troubleshooting
+
+**Modularity**
+- Single-responsibility functions for testability
+- Clear separation between configuration, execution, and reporting
+- Type hints for code clarity and IDE support
+
+### Error Handling Strategy
+
+The script handles network failures gracefully:
+- **Timeout errors**: Server too slow to respond
+- **Connection errors**: DNS/network issues
+- **HTTP errors**: Unexpected status codes
+- **Configuration errors**: Missing/invalid YAML files
+
+Each error type is logged with specific context for debugging.
+
 ## Development
 
 ### IDE Setup
