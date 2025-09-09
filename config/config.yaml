@@ -1,0 +1,18 @@
+# config/config.yaml
+monitor:
+  timeout: 5
+  retries: 3
+  delay: 2
+  log_file: "logs/health_monitor.log"
+  log_level: "INFO"
+
+endpoints:
+  - name: "Python.org"
+    url: "https://python.org"
+    expected_status: 200
+  - name: "Example Site"
+    url: "https://example.com"
+    expected_status: 200
+  - name: "Google"
+    url: "https://google.com"
+    expected_status: 200

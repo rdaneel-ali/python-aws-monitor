@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "../aws-dev/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "python.testing.unittestEnabled": true,
+  "python.analysis.autoImportCompletions": true
+}
