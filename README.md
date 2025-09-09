@@ -34,13 +34,12 @@ This tool provides comprehensive health monitoring for web endpoints with built-
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/python-health-monitor.git
+git clone https://github.com/rdaneel-ali/python-health-monitor.git
 cd python-health-monitor
 
-# Install dependencies
-pip install -r requirements.txt
 
-# Optional: Install in development mode
+# Install the project and its dependencies
+# The `-e` flag installs in editable mode for development
 pip install -e .
 ```
 
@@ -63,14 +62,14 @@ pip install -e .
 ### Basic Usage
 
 ```bash
-# Run with default configuration
-python monitor.py
+# Run with the default configuration
+python-health-monitor
 
-# Use custom configuration
-python monitor.py --config config/production.yaml
+# Use a custom configuration file
+python-health-monitor --config /path/to/my/config.yaml
 
-# Show help
-python monitor.py --help
+# Show help for command-line options
+python-health-monitor --help
 ```
 
 ### Configuration
@@ -78,27 +77,19 @@ python monitor.py --help
 Create a configuration file (YAML or JSON):
 
 ```yaml
-# config/monitor.yaml
-endpoints:
-  - name: "Production API"
-    url: "https://api.example.com/health"
-    timeout: 10
-    retries: 3
-    expected_status: 200
-  - name: "Documentation Site"
-    url: "https://docs.example.com"
-    timeout: 5
-    retries: 2
+# config/config.yaml
+# A simple, single-source-of-truth configuration file.
+monitor:
+  timeout: 5
+  retries: 3
 
 logging:
+  file: "logs/health_monitor.log"
   level: "INFO"
-  format: "structured"
-  file: "logs/monitor.log"
 
-monitoring:
-  interval: 60
-  alert_threshold: 3
-  parallel_checks: true
+endpoints:
+  - name: "Dummy API"
+    url: "https://httpbin.org/status/200"
 ```
 
 ## Architecture
@@ -200,16 +191,26 @@ mypy monitor.py
 
 ```
 python-health-monitor/
-├── monitor.py          # Main monitoring script
-├── config/            # Configuration files
-│   ├── default.yaml
-│   └── production.yaml
-├── tests/             # Test suite
-│   ├── test_monitor.py
-│   └── test_config.py
-├── logs/              # Log files
-├── requirements.txt   # Dependencies
-└── README.md
+├── src/                                # Source code for the package
+│   └── python_health_monitor/
+│       ├── __init__.py                 # Makes 'python_health_monitor' a Python package
+│       └── monitor.py                  # The core health monitoring script
+│
+├── tests/                              # Unit test suite
+│   ├── __init__.py                     # Makes the 'tests' directory a package
+│   ├── test_monitor.py                 # Tests for the core script logic
+│   └── test_config.py                  # Tests for the configuration loading logic
+│
+├── config/                             # Directory for configuration files
+│   └── config.yaml                     # The default configuration file
+│
+├── logs/                               # Log files are saved here
+│   └── .gitkeep                        # Ensures this empty directory is tracked by Git
+│
+├── .gitignore                          # Specifies files and directories to be ignored by Git
+├── pyproject.toml                      # The modern standard for Python project metadata
+├── README.md                           # The project overview and documentation
+└── LICENSE                             # Full text of the project's license
 ```
 
 ## Usage Examples
@@ -217,35 +218,28 @@ python-health-monitor/
 ### Programmatic Usage
 
 ```python
-from monitor import HealthMonitor
+# The import must now come from the installed package
+from python_health_monitor.monitor import main
 
-# Initialize with configuration
-monitor = HealthMonitor(config_file='config/production.yaml')
+# To run the monitor with the default configuration, call main()
+# It will load 'config.yaml' from your project root.
+main()
 
-# Run single check
-results = monitor.check_all()
-
-# Run continuous monitoring
-monitor.start_monitoring(interval=60)
+# To run with a specific configuration file, pass the arguments as a list.
+main(args=["--config", "config/production.yaml"])
 ```
 
 ### Command Line Options
 
 ```bash
-# Basic monitoring
-python monitor.py
+# Run with the default configuration
+python-health-monitor
 
-# Custom configuration
-python monitor.py --config config/staging.yaml
+# Use a custom configuration file
+python-health-monitor --config /path/to/my/config.yaml
 
-# One-time check (no continuous monitoring)
-python monitor.py --once
-
-# Verbose output
-python monitor.py --verbose
-
-# Output to specific log file
-python monitor.py --log-file /path/to/monitor.log
+# Show help for command-line options
+python-health-monitor --help
 ```
 
 ## Contributing
