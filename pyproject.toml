@@ -36,7 +36,8 @@ Source = "https://github.com/rdaneel-ali/python-health-monitor"
 [project.optional-dependencies]
 dev = [
     "pytest",
-    "pytest-cov"
+    "pytest-cov",
+    "pyfakefs"
 ]
 
 [project.scripts]
