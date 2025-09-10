@@ -1,6 +1,0 @@
-requests
-boto3
-pytest
-PyYAML
-awscli-local
-localstack-client
