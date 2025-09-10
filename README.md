@@ -407,15 +407,15 @@ python-health-monitor --help
 
 ### Production Deployment
 ```bash
-# Install production dependencies
-pip install -r requirements.txt
+# Install the project and its production dependencies
+pip install .
 
 # Set up configuration
 cp config/config.yaml config/production.yaml
 # Edit production.yaml with your endpoints
 
 # Run with production config
-python monitor.py --config config/production.yaml
+python -m python_health_monitor.monitor --config config/production.yaml
 ```
 
 ### Systemd Service (Linux)
