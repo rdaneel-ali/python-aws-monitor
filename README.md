@@ -1,6 +1,6 @@
 # Python Health Monitor
 
-[![CI](https://github.com/rdaneel-ali/python-health-monitor/actions/workflows/ci.yml/badge.svg)](https://github.com/rdaneel-ali/python-health-monitor/actions/workflows/ci.yml)
+[![CI](https://github.com/rdaneel-ali/python-health-monitor/actions/workflows/ci.yaml/badge.svg)](https://github.com/rdaneel-ali/python-health-monitor/actions/workflows/ci.yaml)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-brightgreen)]()
 
