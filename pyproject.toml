@@ -34,6 +34,12 @@ keywords = ["health-check", "url-monitor", "web-dev", "network"]
 Homepage = "https://github.com/rdaneel-ali/python-health-monitor"
 Source = "https://github.com/rdaneel-ali/python-health-monitor"
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov"
+]
+
 [project.scripts]
 python-health-monitor = "python_health_monitor.monitor:main"
 
