@@ -236,6 +236,43 @@ pip install -e .
     [WARNING] Endpoint 'Broken API' returned status 500
   ```
 
+## Project Status
+**Completed Milestones** ✅
+- ✅ **Foundational Codebase:** A robust and well-documented core application ([#2](https://github.com/rdaneel-ali/python-health-monitor/issues/2)).
+- ✅ **Test Coverage:** Comprehensive unit testing with `pytest` for reliability ([#3](https://github.com/rdaneel-ali/python-health-monitor/issues/3)).
+- ✅ **Structured Logging:** For enhanced operational visibility ([#4](https://github.com/rdaneel-ali/python-health-monitor/issues/4)).
+- ✅ **Packaging & CLI:** Packaged as a reusable Python module with a clean Command-Line Interface ([#5](https://github.com/rdaneel-ali/python-health-monitor/issues/5)).
+- ✅ **Continuous Integration:** Automated CI/CD workflow with GitHub Actions ([#6](https://github.com/rdaneel-ali/python-health-monitor/issues/6)).
+
+---
+
+## Roadmap 🛣️
+Our development roadmap is tied directly to GitHub milestones and issues. Check out the latest progress and contribute!
+
+### Phase 1: Foundations ([Milestone 1: Complete](https://github.com/rdaneel-ali/python-health-monitor/milestone/1))
+This phase focused on building a robust, well-tested, and maintainable core application with essential features and a streamlined development process.
+
+### Phase 2: Cloud Readiness & LocalStack Integration ([Milestone 2: In Progress](https://github.com/rdaneel-ali/python-health-monitor/milestone/2))
+
+This phase focuses on preparing the project for AWS by improving code quality, configuration flexibility, and local cloud integration.
+
+- [ ] [Code Quality Enforcement with flake8 and black](https://github.com/rdaneel-ali/python-health-monitor/issues/7)  
+- [ ] [Type Checking with mypy](https://github.com/rdaneel-ali/python-health-monitor/issues/8)  
+- [ ] [Multiple Configuration Profiles (dev/prod)](https://github.com/rdaneel-ali/python-health-monitor/issues/9)  
+- [ ] [Environment Variable Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/10)  
+- [ ] [Retry Improvements & Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/11)  
+- [ ] [Pre-Commit Hooks for Code Style](https://github.com/rdaneel-ali/python-health-monitor/issues/12)  
+- [ ] [LocalStack AWS Integration](https://github.com/rdaneel-ali/python-health-monitor/issues/13)  
+
+### Future Phases: Full-Fledged Monitoring System ([Milestone 3+: Planned](https://github.com/rdaneel-ali/python-health-monitor/milestone/3))
+This is the long-term vision to evolve the project into a complete monitoring framework.
+
+- [ ] **Monitoring Framework:** Extend the core logic to monitor other services (e.g., databases, storage, custom APIs).
+- [ ] **Alerting Integration:** Add a notification system using SNS to send alerts for failed checks.
+- [ ] **Metrics & Dashboards:** Integrate with CloudWatch Metrics to build a real-time monitoring dashboard.
+- [ ] **Comprehensive IaC:** Automate the full deployment of the entire serverless monitoring system (Lambda, API Gateway, S3, SNS).
+
+
 ## Architecture
 
 ### Design Principles
