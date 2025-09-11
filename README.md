@@ -14,7 +14,7 @@ This tool provides comprehensive health monitoring for web endpoints with built-
 
 ### Core Monitoring
 - **Multi-endpoint health checking** with configurable parameters
-- **Resilient request handling** with retry logic and exponential backoff  
+- **Resilient request handling** with retry logic and exponential backoff
 - **Structured logging** for operational visibility and debugging
 - **Flexible configuration** via YAML/JSON with environment variable overrides
 
@@ -224,7 +224,7 @@ pip install -e .
 
 - **4. Run with custom config**
 
-  ```bash 
+  ```bash
     python-health-monitor --config config/custom.yaml
   ```
 
@@ -256,13 +256,13 @@ This phase focused on building a robust, well-tested, and maintainable core appl
 
 This phase focuses on preparing the project for AWS by improving code quality, configuration flexibility, and local cloud integration.
 
-- [ ] [Code Quality Enforcement with flake8 and black](https://github.com/rdaneel-ali/python-health-monitor/issues/7)  
-- [ ] [Type Checking with mypy](https://github.com/rdaneel-ali/python-health-monitor/issues/8)  
-- [ ] [Multiple Configuration Profiles (dev/prod)](https://github.com/rdaneel-ali/python-health-monitor/issues/9)  
-- [ ] [Environment Variable Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/10)  
-- [ ] [Retry Improvements & Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/11)  
-- [ ] [Pre-Commit Hooks for Code Style](https://github.com/rdaneel-ali/python-health-monitor/issues/12)  
-- [ ] [LocalStack AWS Integration](https://github.com/rdaneel-ali/python-health-monitor/issues/13)  
+- [ ] [Code Quality Enforcement with flake8 and black](https://github.com/rdaneel-ali/python-health-monitor/issues/7)
+- [ ] [Type Checking with mypy](https://github.com/rdaneel-ali/python-health-monitor/issues/8)
+- [ ] [Multiple Configuration Profiles (dev/prod)](https://github.com/rdaneel-ali/python-health-monitor/issues/9)
+- [ ] [Environment Variable Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/10)
+- [ ] [Retry Improvements & Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/11)
+- [ ] [Pre-Commit Hooks for Code Style](https://github.com/rdaneel-ali/python-health-monitor/issues/12)
+- [ ] [LocalStack AWS Integration](https://github.com/rdaneel-ali/python-health-monitor/issues/13)
 
 ### Future Phases: Full-Fledged Monitoring System ([Milestone 3+: Planned](https://github.com/rdaneel-ali/python-health-monitor/milestone/3))
 This is the long-term vision to evolve the project into a complete monitoring framework.

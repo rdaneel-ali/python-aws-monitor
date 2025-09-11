@@ -9,7 +9,7 @@ extend-ignore = E203,W503
 select = E,F,W,B
 
 # Skip common non-source dirs
-exclude = .venv,build,dist,.git,__pycache__,.github,.pytest_cache,logs
+exclude = .venv,.vscode,build,dist,.git,__pycache__,.github,.pytest_cache,logs
 
 # (Optional, uncomment later)
 # max-complexity = 10

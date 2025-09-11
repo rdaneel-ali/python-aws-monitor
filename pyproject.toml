@@ -35,16 +35,16 @@ Source = "https://github.com/rdaneel-ali/python-health-monitor"
 
 [project.optional-dependencies]
 dev = [
-  "pytest",
-  "pytest-cov",
-  "pyfakefs",
-  "black",
-  "flake8",
-  "flake8-bugbear",
-  "mypy",
-  "isort",
-  "bandit",
-  "pip-audit",
+    "pytest",
+    "pytest-cov",
+    "pyfakefs",
+    "black==24.4.2",
+    "flake8==7.0.0",
+    "flake8-bugbear==24.4.26",
+    "isort==5.13.2",
+    "bandit",
+    "pip-audit",
+    "mypy==1.10.0"
 ]
 
 [project.scripts]
