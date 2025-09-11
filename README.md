@@ -238,11 +238,11 @@ pip install -e .
 
 ## Project Status
 **Completed Milestones** ✅
-- ✅ **Foundational Codebase:** A robust and well-documented core application (https://github.com/rdaneel-ali/python-health-monitor/issues/2).
-- ✅ **Test Coverage:** Comprehensive unit testing with `pytest` for reliability (https://github.com/rdaneel-ali/python-health-monitor/issues/3).
-- ✅ **Structured Logging:** For enhanced operational visibility (https://github.com/rdaneel-ali/python-health-monitor/issues/4).
-- ✅ **Packaging & CLI:** Packaged as a reusable Python module with a clean Command-Line Interface (https://github.com/rdaneel-ali/python-health-monitor/issues/5).
-- ✅ **Continuous Integration:** Automated CI/CD workflow with GitHub Actions (https://github.com/rdaneel-ali/python-health-monitor/issues/6).
+- ✅ **Foundational Codebase:** A robust and well-documented core application ([#2](https://github.com/rdaneel-ali/python-health-monitor/issues/2)).
+- ✅ **Test Coverage:** Comprehensive unit testing with `pytest` for reliability ([#3](https://github.com/rdaneel-ali/python-health-monitor/issues/3)).
+- ✅ **Structured Logging:** For enhanced operational visibility ([#4](https://github.com/rdaneel-ali/python-health-monitor/issues/4)).
+- ✅ **Packaging & CLI:** Packaged as a reusable Python module with a clean Command-Line Interface ([#5](https://github.com/rdaneel-ali/python-health-monitor/issues/5)).
+- ✅ **Continuous Integration:** Automated CI/CD workflow with GitHub Actions ([#6](https://github.com/rdaneel-ali/python-health-monitor/issues/6)).
 
 ---
 
