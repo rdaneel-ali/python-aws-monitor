@@ -1,0 +1,19 @@
+[flake8]
+# Keep in sync with Black
+max-line-length = 88
+
+# E203 & W503 conflict with Black formatting
+extend-ignore = E203,W503
+
+# Core pycodestyle (E/W), logic errors (F), and Bugbear (B)
+select = E,F,W,B
+
+# Skip common non-source dirs
+exclude = .venv,.vscode,build,dist,.git,__pycache__,.github,.pytest_cache,logs
+
+# (Optional, uncomment later)
+# max-complexity = 10
+
+# (Optional for selective file patterns)
+# per-file-ignores =
+#     tests/*.py: F401

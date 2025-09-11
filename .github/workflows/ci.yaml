@@ -22,5 +22,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]" # Installs project and dev dependencies
 
+      - name: Lint (flake8)
+        run: flake8
+
+      - name: Format check (black)
+        run: black --check .
+
       - name: Run tests
         run: pytest --cov=python_health_monitor

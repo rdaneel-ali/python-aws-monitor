@@ -13,8 +13,8 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = "GPL-2.0"
 dependencies = [
-    "requests",
-    "PyYAML"
+  "requests>=2.31,<3.0",
+  "PyYAML>=6.0"
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -27,7 +27,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Topic :: System :: Monitoring"
 ]
-keywords = ["health-check", "url-monitor", "web-dev", "network"]
+keywords = ["health-check", "monitoring", "resilience", "url-monitor", "web-dev", "endpoint", "network"]
 
 [project.urls]
 Homepage = "https://github.com/rdaneel-ali/python-health-monitor"
@@ -37,7 +37,14 @@ Source = "https://github.com/rdaneel-ali/python-health-monitor"
 dev = [
     "pytest",
     "pytest-cov",
-    "pyfakefs"
+    "pyfakefs",
+    "black==24.4.2",
+    "flake8==7.0.0",
+    "flake8-bugbear==24.4.26",
+    "isort==5.13.2",
+    "bandit",
+    "pip-audit",
+    "mypy==1.10.0"
 ]
 
 [project.scripts]
@@ -48,3 +55,16 @@ package-dir = {"" = "src"}
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310"]
+include = '\.pyi?$'
+extend-exclude = '''
+(
+  /build/
+  |/dist/
+  |\.venv/
+  |/\.eggs/
+)
+'''
