@@ -75,7 +75,7 @@ def test_load_config_explicit_path_found(fs, mock_project_root):
     """Test loading an explicitly specified config file successfully."""
     with patch("python_health_monitor.monitor.PROJECT_ROOT", new=mock_project_root):
         config_data = """
-            monitor:
+        monitor:
             retries: 5
         """
         fs.create_file("/mock_project_root/my_custom_config.yaml", contents=config_data)
