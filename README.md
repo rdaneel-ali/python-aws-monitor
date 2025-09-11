@@ -239,10 +239,10 @@ pip install -e .
 ## Project Status
 **Completed Milestones** ✅
 - ✅ **Foundational Codebase:** A robust and well-documented core application ([Issue #128](https://github.com/rdaneel-ali/python-health-monitor/issues/2)).
-- ✅ **Test Coverage:** Comprehensive unit testing with `pytest` for reliability ([Issue #242](https://github.com/rdaneel-ali/python-health-monitor/issues/3)).
-- ✅ **Structured Logging:** For enhanced operational visibility ([Issue #398](https://github.com/rdaneel-ali/python-health-monitor/issues/4)).
-- ✅ **Packaging & CLI:** Packaged as a reusable Python module with a clean Command-Line Interface ([Issue #091](https://github.com/rdaneel-ali/python-health-monitor/issues/5)).
-- ✅ **Continuous Integration:** Automated CI/CD workflow with GitHub Actions ([Issue #408](https://github.com/rdaneel-ali/python-health-monitor/issues/6)).
+- ✅ **Test Coverage:** Comprehensive unit testing with `pytest` for reliability (https://github.com/rdaneel-ali/python-health-monitor/issues/3).
+- ✅ **Structured Logging:** For enhanced operational visibility (https://github.com/rdaneel-ali/python-health-monitor/issues/4).
+- ✅ **Packaging & CLI:** Packaged as a reusable Python module with a clean Command-Line Interface (https://github.com/rdaneel-ali/python-health-monitor/issues/5).
+- ✅ **Continuous Integration:** Automated CI/CD workflow with GitHub Actions (https://github.com/rdaneel-ali/python-health-monitor/issues/6).
 
 ---
 
@@ -252,14 +252,17 @@ Our development roadmap is tied directly to GitHub milestones and issues. Check 
 ### Phase 1: Foundations ([Milestone 1: Complete](https://github.com/rdaneel-ali/python-health-monitor/milestone/1))
 This phase focused on building a robust, well-tested, and maintainable core application with essential features and a streamlined development process.
 
-### Phase 2: Serverless Integration with AWS Lambda & API Gateway ([Milestone 2: Planned](https://github.com/rdaneel-ali/python-health-monitor/milestone/2))
-This phase focuses on migrating the core logic to a serverless architecture and exposing it as a RESTful API.
+### Phase 2: Cloud Readiness & LocalStack Integration ([Milestone 2: In Progress](https://github.com/rdaneel-ali/python-health-monitor/milestone/2))
 
-- [ ] **Lambda & API Gateway Deployment:** Package and deploy the core logic as an AWS Lambda function, exposed via an API Gateway endpoint.
-- [ ] **S3 Logging:** Configure the Lambda to write logs and reports to an S3 bucket for long-term storage and analysis.
-- [ ] **LocalStack Integration:** Develop and test all AWS-related features locally using LocalStack.
-- [ ] **Infrastructure as Code:** Use `boto3` or `AWS CDK` to automate the provisioning of the Lambda and API Gateway.
-- [ ] **Expanded Test Suite:** Add new unit tests using the `Moto` library to mock AWS services.
+This phase focuses on preparing the project for AWS by improving code quality, configuration flexibility, and local cloud integration.
+
+- [ ] [Code Quality Enforcement with flake8 and black](https://github.com/rdaneel-ali/python-health-monitor/issues/7)  
+- [ ] [Type Checking with mypy](https://github.com/rdaneel-ali/python-health-monitor/issues/8)  
+- [ ] [Multiple Configuration Profiles (dev/prod)](https://github.com/rdaneel-ali/python-health-monitor/issues/9)  
+- [ ] [Environment Variable Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/10)  
+- [ ] [Retry Improvements & Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/11)  
+- [ ] [Pre-Commit Hooks for Code Style](https://github.com/rdaneel-ali/python-health-monitor/issues/12)  
+- [ ] [LocalStack AWS Integration](https://github.com/rdaneel-ali/python-health-monitor/issues/13)  
 
 ### Future Phases: Full-Fledged Monitoring System ([Milestone 3+: Planned](https://github.com/rdaneel-ali/python-health-monitor/milestone/3))
 This is the long-term vision to evolve the project into a complete monitoring framework.
