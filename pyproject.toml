@@ -37,7 +37,9 @@ Source = "https://github.com/rdaneel-ali/python-health-monitor"
 dev = [
     "pytest",
     "pytest-cov",
-    "pyfakefs"
+    "pyfakefs",
+    "black",
+    "flake8"
 ]
 
 [project.scripts]
