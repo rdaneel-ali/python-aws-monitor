@@ -13,6 +13,8 @@ pip install -e '.[dev]'
 (Once pre-commit hooks are added:)
 ```bash
 pre-commit install
+# If a commit-msg hook is introduced:
+pre-commit install --hook-type commit-msg
 ```
 
 ## Branch Naming
@@ -87,6 +89,38 @@ flake8
 pytest --cov=python_health_monitor
 ```
 
+With pre-commit (if enabled):
+```bash
+pre-commit run --all-files
+```
+
+## Roadmap & Milestone Maintenance
+
+The README serves as a living “status page” for milestones and key issues.
+Keep the README’s roadmap in sync:
+- Update the [Milestones & Progress](./README.md#milestones--progress) table when statuses change.
+- Keep the [Active Milestone Detail](./README.md#active-milestone-detail) section current with ✅ 🚧 ⏳ icons and links.
+
+Status legend:
+- ✅ Completed & merged
+- 🚧 In progress / actively worked
+- ⏳ Not started
+
+Update rules:
+1. When an issue’s status changes:
+   - ⏳ → 🚧 when work starts; 🚧 → ✅ when merged/closed.
+2. When a milestone completes:
+   - Flip its status to ✅ in the “Milestones & Progress” table.
+3. Linking discipline:
+   - Link milestone titles to their GitHub pages.
+   - Link all issue numbers (e.g., [#12]) to the issue.
+4. Detail sections:
+   - Keep the active milestone’s expandable table current (icons + summaries).
+   - Order by status: ✅ (first), then 🚧, then ⏳.
+5. Representative issues:
+   - In the “Milestones & Progress” table, include representative linked issues (not an exhaustive list).
+
+
 ## Pull Request Checklist
 
 - [ ] Branch name follows convention
@@ -95,6 +129,8 @@ pytest --cov=python_health_monitor
 - [ ] Tests pass
 - [ ] Docs updated (if behavior changes)
 - [ ] Issue referenced (Resolves/Closes where appropriate)
+- [ ] README Roadmap updated (icons, links, milestone status) if relevant
+- [ ] CHANGELOG updated under “Unreleased” if user-visible behavior or contributor workflow changes
 
 ## Tests
 
@@ -103,6 +139,20 @@ Add/update tests when:
 - Changing configuration parsing
 - Adjusting retry logic
 - Fixing a bug
+
+## CHANGELOG Policy
+
+We use a simple Keep a Changelog–style [CHANGELOG](./CHANGELOG.md) file with an “Unreleased” section.
+
+Update the CHANGELOG when:
+- User-visible behavior changes (CLI flags, config keys/defaults, output)
+- Notable features/fixes land
+- Breaking changes occur
+- Significant contributor-experience changes (e.g., mandatory hooks/CI) happen
+
+Categorize under:
+- Added, Changed, Deprecated, Removed, Fixed, Security
+- Optionally tag contributor-only notes as “Internal” in the text
 
 ## Security
 

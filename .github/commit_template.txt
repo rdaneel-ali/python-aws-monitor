@@ -1,8 +1,12 @@
-# Summary (Action: imperative summary, ≤72 chars)
-#
-# Why:
-#  - 
-# How:
-#  - 
-#
-# Refs: #ISSUE
+Add: short imperative description (≤ 72 chars)
+
+# Body (optional, wrap at 72 cols):
+# - Explain what and why (not how).
+# - Reference issues if partial: "Refs #12"
+# - Use bullet points for multiple changes.
+
+# Footer (optional):
+# BREAKING CHANGE: describe impact
+# Co-authored-by: Name <email>
+
+# Lines starting with # are ignored.

@@ -1,18 +1,35 @@
 name: Branch Name Check
+
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
 
+permissions:
+  contents: read
+
 jobs:
-  validate:
+  branch-name:
     runs-on: ubuntu-latest
     steps:
       - name: Validate branch naming convention
-        run: |
-          BRANCH="${{ github.head_ref }}"
-          REGEX='^([a-z0-9]+(-[a-z0-9]+)*)/([0-9]+)-([a-z0-9]+(-[a-z0-9]+)*)$'
-          if [[ ! "$BRANCH" =~ $REGEX ]]; then
-            echo "Branch name '$BRANCH' does not match required pattern:"
-            echo "[milestone-slug]/[issue#]-[feature-slug]"
-            exit 1
-          fi
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const ref = context.payload.pull_request.head.ref;
+            const pattern = /^(phase-[0-9]+|hardening|feature|fix|chore)\/[0-9]+-([a-z0-9]+(-[a-z0-9]+)*)$/;
+            if (!pattern.test(ref)) {
+              core.setFailed(
+                `Invalid branch name: "${ref}"\n` +
+                "Expected format: [milestone-slug]/[issue#]-[feature-slug]\n" +
+                "Where:\n" +
+                "  milestone-slug: phase-N | hardening | feature | fix | chore\n" +
+                "  issue#: digits (GitHub issue number)\n" +
+                "  feature-slug: lowercase words separated by single dashes (no leading/trailing/consecutive dashes)\n\n" +
+                "Examples:\n" +
+                "  phase-2/17-add-retry-logic\n" +
+                "  hardening/41-improve-logging\n" +
+                "  feature/56-config-profiles\n"
+              );
+            } else {
+              core.info(`Branch name "${ref}" is valid.`);
+            }

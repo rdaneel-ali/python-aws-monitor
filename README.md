@@ -1,129 +1,76 @@
 # Python Health Monitor
-
 [![CI](https://github.com/rdaneel-ali/python-health-monitor/actions/workflows/ci.yaml/badge.svg)](https://github.com/rdaneel-ali/python-health-monitor/actions/workflows/ci.yaml)
-[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](LICENSE)
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-brightgreen)]()
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](./LICENSE)
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-brightgreen)](https://www.python.org/downloads/)
 
-A robust health monitoring tool for reliable endpoint monitoring with enterprise-grade features and planned cloud integration capabilities.
+[![Latest Release](https://img.shields.io/github/v/release/rdaneel-ali/python-health-monitor?include_prereleases&display_name=tag&sort=semver&label=latest%20release)](https://github.com/rdaneel-ali/python-health-monitor/releases)
+[![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-blue)](./CHANGELOG.md#010-beta---2025-09-10) <!-- update date to your actual release date -->
 
-## Overview
+> Resilient, configurable endpoint health monitoring with structured logging and disciplined engineering practices.
 
-This tool provides comprehensive health monitoring for web endpoints with built-in resilience patterns, structured logging, and extensible architecture. Built with production reliability in mind while maintaining simplicity for quick deployment scenarios.
+## Executive Summary
+Python Health Monitor provides a configuration‑driven way to probe HTTP endpoints with retries, timeouts, and clear success/failure reporting. The project intentionally demonstrates:
+- Thoughtful milestone planning (phased evolution)
+- Enforced contributor workflow (branch naming, commit conventions, pre-commit hooks)
+- Quality automation (formatting, linting, hygiene)
+- Extensibility foundation (future notification & typed resilience layers)
 
-## Features
+## Key Features
+- YAML configuration (override or extend defaults)
+- Retry + timeout control per monitor settings
+- Structured logging to file + console
+- Clean success/failure summarization
+- Predictable project conventions & tooling
 
-### Core Monitoring
-- **Multi-endpoint health checking** with configurable parameters
-- **Resilient request handling** with retry logic and exponential backoff
-- **Structured logging** for operational visibility and debugging
-- **Flexible configuration** via YAML/JSON with environment variable overrides
+## Tech & Tooling
+| Area | Choice |
+|------|--------|
+| Language | Python |
+| Packaging | `pyproject.toml` (PEP 621) |
+| Formatting | black + isort |
+| Lint | flake8 + bugbear (Ruff considered later) |
+| Hook Automation | pre-commit |
+| Branch Policy | Regex‑validated (workflow) |
+| Commit Convention | Action: imperative description |
+| Testing | pytest (coverage planned) |
+| Typing | Gradual – mypy planned (Phase 3) |
 
-### Architecture & Quality
-- **Modular design** with clean separation of concerns
-- **Comprehensive test coverage** using pytest
-- **CLI and programmatic interfaces** for versatile integration
-- **Production-ready packaging** with proper dependency management
-
-### Planned Cloud Integration
-- **AWS Lambda deployment** for serverless operation
-- **CloudWatch integration** for centralized logging and alerting
-- **CI/CD pipeline** with automated testing and deployment
-
-### Prerequisites
-- Python 3.8+
-- `pip` installed (comes with Python)
-
----
-
-
-### Installation
-
-Clone and install in editable mode:
-
+## Installation
 ```bash
-# Clone repository
-git clone https://github.com/rdaneel-ali/python-health-monitor.git
-cd python-health-monitor
-
-# Install the project and its dependencies
-# The `-e` flag installs in editable mode for development
-pip install -e .
+pip install python-health-monitor
+# Development mode
+pip install -e '.[dev]'
 ```
 
-Alternatively install directly from GitHub without cloning
-
+## Quick Start
 ```bash
-# Install the latest version from the main branch
-pip install git+https://github.com/rdaneel-ali/python-health-monitor.git
-
-# Or install a specific release/tag
-pip install git+https://github.com/rdaneel-ali/python-health-monitor.git@v0.1.0
-```
-
-### Quick Start 🚀
-The project includes a **default configuration** (`config/config.yaml`) so you can run it immediately after installation.
-
-```bash
-# Run the monitor with the included default config
 python-health-monitor
 ```
-**Example Output:**
-```bash
+Example output (abridged):
+```
 Loaded configuration from config/config.yaml
-Logging configured: logs/health_monitor.log at INFO level
 Starting health checks...
-Dummy API: ✅ SUCCESS - Success: 200
-
-Health check summary: 1/1 endpoints healthy
+Health check summary: 3/3 endpoints healthy
 🎉 All endpoints are healthy!
-Health checks completed
 ```
-**Custom Configuration file**
-To run with your own configuration, provide a file via `--config`:
+
+## Configuration
+Use a custom file:
 ```bash
-python-health-monitor --config /path/to/my/config.yaml
+python-health-monitor --config custom.yaml
 ```
-### Dependencies
-
-**Core Application:**
-- `requests` - HTTP client for health checks
-- `PyYAML` - Configuration file parsing
-
-**Testing & Quality:**
-- `pytest` - Testing framework
-
-**AWS & LocalStack Integration:**
-- `boto3` - AWS SDK for Python
-- `awscli-local` - LocalStack-compatible AWS CLI wrapper
-- `localstack-client` - LocalStack service management
-
-> All AWS-related dependencies work seamlessly with LocalStack for local development
-
-### Basic Usage
-
-```bash
-# Run with the default configuration
-python-health-monitor
-
-# Run with a custom configuration file
-python-health-monitor --config /path/to/my/config.yaml
-
-# Show help for command-line options
-python-health-monitor --help
-```
-
-### Configuration ⚙️
-The monitor is **configuration-driven**, so you can adjust behavior without modifying code.
-
-**Default Configuration**
-The tool loads `config/config.yaml` by default
-
+Minimal override:
 ```yaml
-# config/config.yaml
-# A simple, single-source-of-truth configuration file.
 monitor:
-  timeout: 5        # Request timeout in seconds
-  retries: 3        # Number of retry attempts
+  timeout: 10
+  retries: 5
+```
+
+Default (`config/config.yaml`):
+```yaml
+monitor:
+  timeout: 5
+  retries: 3
 
 logging:
   file: "logs/health_monitor.log"
@@ -132,353 +79,137 @@ logging:
 endpoints:
   - name: "Python.org"
     url: "https://python.org"
-  - name: "Example Site"
-    url: "https://example.com"
-  - name: "Google"
-    url: "https://google.com"
-```
-This file is ready to use immediately — no changes required.
-
-**Custom Configuration**
-You can create your own YAML or JSON file and pass it with `--config`:
-
-```bash
-python-health-monitor --config /path/to/my/config.yaml
 ```
 
-Example custom file:
-```yaml
-monitor:
-  timeout: 10
-  retries: 5
+## Architecture Snapshot
+- Configuration layer (YAML → in-memory model)
+- Monitor engine (loop, per-endpoint execution, retry logic)
+- Logging abstraction (console + file)
+- Summary reporting aggregator
+- Extension vectors (notifications, richer status taxonomy, typed resilience wrappers)
 
-logging:
-  file: "logs/prod_monitor.log"
-  level: "WARNING"
+## Milestones & Progress
+| Phase | Status | Highlights | Representative Issues |
+|-------|--------|------------|-----------------------|
+| [Phase 1 – Foundations](https://github.com/rdaneel-ali/python-health-monitor/milestone/1) | ✅ Completed | Core monitor, config loading, basic logging | [#2](https://github.com/rdaneel-ali/python-health-monitor/issues/2) |
+| [Phase 2 – Cloud Readiness & LocalStack Integration](https://github.com/rdaneel-ali/python-health-monitor/milestone/2) | 🚧 In Progress | Tooling, quality automation, config evolution groundwork | [#7](https://github.com/rdaneel-ali/python-health-monitor/issues/7), [#12](https://github.com/rdaneel-ali/python-health-monitor/issues/12), [#8](https://github.com/rdaneel-ali/python-health-monitor/issues/8), [#10](https://github.com/rdaneel-ali/python-health-monitor/issues/10) |
+| Phase 3 – Typing & Extensibility | ⏳ Planned | Mypy baseline, typed response models | #8 (carried forward if unfinished) |
+| Phase 4 – Config Evolution | ⏳ Planned | Layered / profile configs, env overrides | [#9](https://github.com/rdaneel-ali/python-health-monitor/issues/9) |
+| Phase 5 – Resilience Enhancements | ⏳ Planned | Backoff strategies, jitter, circuit guards | [#11](https://github.com/rdaneel-ali/python-health-monitor/issues/11) |
+| Ongoing – Hardening | ⏳ Rolling | Logging enrichment, fault classification | (label: hardening) |
 
-endpoints:
-  - name: "Production API"
-    url: "https://api.example.com/health"
-  - name: "Docs"
-    url: "https://docs.example.com"
-```
+> Current Focus: Phase 2 (tooling maturity + contributor experience) → then Phase 3 (types + programmatic API shape).
 
-### Environment Overrides
-Environment variables override config file values (useful in CI/CD or Docker)
+## Completed Milestones (Detail)
+<details>
+<summary><strong>Phase 1 – Foundations (Completed)</strong></summary>
 
-```bash
-export MONITOR_TIMEOUT=15
-export MONITOR_RETRIES=2
-python-health-monitor
-```
+**Closed Issues**
 
+| Issue | Status | Summary |
+|-------|--------|---------|
+| [#2](https://github.com/rdaneel-ali/python-health-monitor/issues/2) | ✅ | Foundational Codebase |
+| [#3](https://github.com/rdaneel-ali/python-health-monitor/issues/3) | ✅ | Comprehensive unit testing with `pytest` |
+| [#4](https://github.com/rdaneel-ali/python-health-monitor/issues/4) | ✅ | Structured Logging |
+| [#5](https://github.com/rdaneel-ali/python-health-monitor/issues/5) | ✅ | Packaging as Python module & CLI |
+| [#6](https://github.com/rdaneel-ali/python-health-monitor/issues/6) | ✅ | Automated CI/CD workflow with GitHub Actions |
 
-### Working Example ✅
-Here's how to verify the monitor works in your system:
+Rationale: Establish a minimal but extensible core before layering quality gates and typing.
 
-- **1. Clone & install**
+</details>
 
-```bash
-git clone https://github.com/rdaneel-ali/python-health-monitor.git
-cd python-health-monitor
-pip install -e .
-```
+## Active Milestone Detail
+<details open>
+<summary><strong>Phase 2 – Cloud Readiness & LocalStack Integration (In Progress)</strong></summary>
 
-- **2. Run with default config**
+**Legend:** ✅ Completed & merged · 🚧 In progress / actively worked · ⏳ Not started
 
-  ```bash
-  python-health-monitor
-  ```
+| Issue | Status | Summary |
+|-------|--------|---------|
+| [#7](https://github.com/rdaneel-ali/python-health-monitor/issues/7) | ✅ | Code Quality enforcement with flake8 and black |
+| [#12](https://github.com/rdaneel-ali/python-health-monitor/issues/12) | 🚧 | Pre-Commit Hooks for Code Style |
+| [#8](https://github.com/rdaneel-ali/python-health-monitor/issues/8) | ⏳ | Type Checking with mypy |
+| [#10](https://github.com/rdaneel-ali/python-health-monitor/issues/10) | ⏳ | Environment Variable Overrides |
+| [#9](https://github.com/rdaneel-ali/python-health-monitor/issues/9) | ⏳ | Config Profiles (dev/prod) |
+| [#11](https://github.com/rdaneel-ali/python-health-monitor/issues/11) | ⏳ | Retry Improvements |
 
-  Example output
+**Focus This Phase**
+- Mature contributor workflow (hooks, branch policy, documentation)
+- Prepare ground for typing & layered configs
+- Begin resilience refinements (retry enhancements; env/config overrides)
 
-  ```bash
-  [INFO] Checking endpoint: Python.org (https://python.org)
-  [INFO] Endpoint 'Python.org' is healthy (200)
-  [INFO] Checking endpoint: Example Site (https://example.com)
-  [INFO] Endpoint 'Example Site' is healthy (200)
-  [INFO] Checking endpoint: Google (https://google.com)
-  [INFO] Endpoint 'Google' is healthy (200)
-  ```
-  Logs are also written to `logs/health_monitor.log`.
+</details>
 
-- **3. Create a custom config**
+## Upcoming Roadmap (High-Level)
+- Phase 3: Type safety (mypy), improved error surface (result objects)
+- Phase 4: Layered configuration (base → env → local override), validation
+- Phase 5: Retry backoff strategies (exponential, jitter), failure classification
+- Notification Plugins: Slack / Webhook / Email (post Phase 5)
+- Operational Enhancements: Coverage reporting, CI matrix (Python versions), release automation
 
-  Save as `config/custom.yaml`:
-
-  ```yaml
-  monitor:
-    timeout: 3
-    retries: 2
-
-  logging:
-    file: "logs/custom_monitor.log"
-    level: "DEBUG"
-
-  endpoints:
-    - name: "Google"
-      url: "https://google.com"
-    - name: "Broken API"
-      url: "https://httpbin.org/status/500"
-  ```
-
-- **4. Run with custom config**
-
-  ```bash
-    python-health-monitor --config config/custom.yaml
-  ```
-
-  Example output:
-
-  ```bash
-    [INFO] Checking endpoint: Google (https://www.google.com)
-    [INFO] Endpoint 'Google' is healthy (200)
-    [WARNING] Endpoint 'Broken API' returned status 500
-  ```
-
-## Project Status
-**Completed Milestones** ✅
-- ✅ **Foundational Codebase:** A robust and well-documented core application ([#2](https://github.com/rdaneel-ali/python-health-monitor/issues/2)).
-- ✅ **Test Coverage:** Comprehensive unit testing with `pytest` for reliability ([#3](https://github.com/rdaneel-ali/python-health-monitor/issues/3)).
-- ✅ **Structured Logging:** For enhanced operational visibility ([#4](https://github.com/rdaneel-ali/python-health-monitor/issues/4)).
-- ✅ **Packaging & CLI:** Packaged as a reusable Python module with a clean Command-Line Interface ([#5](https://github.com/rdaneel-ali/python-health-monitor/issues/5)).
-- ✅ **Continuous Integration:** Automated CI/CD workflow with GitHub Actions ([#6](https://github.com/rdaneel-ali/python-health-monitor/issues/6)).
-
----
-
-## Roadmap 🛣️
-Our development roadmap is tied directly to GitHub milestones and issues. Check out the latest progress and contribute!
-
-### Phase 1: Foundations ([Milestone 1: Complete](https://github.com/rdaneel-ali/python-health-monitor/milestone/1))
-This phase focused on building a robust, well-tested, and maintainable core application with essential features and a streamlined development process.
-
-### Phase 2: Cloud Readiness & LocalStack Integration ([Milestone 2: In Progress](https://github.com/rdaneel-ali/python-health-monitor/milestone/2))
-
-This phase focuses on preparing the project for AWS by improving code quality, configuration flexibility, and local cloud integration.
-
-- [ ] [Code Quality Enforcement with flake8 and black](https://github.com/rdaneel-ali/python-health-monitor/issues/7)
-- [ ] [Type Checking with mypy](https://github.com/rdaneel-ali/python-health-monitor/issues/8)
-- [ ] [Multiple Configuration Profiles (dev/prod)](https://github.com/rdaneel-ali/python-health-monitor/issues/9)
-- [ ] [Environment Variable Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/10)
-- [ ] [Retry Improvements & Overrides](https://github.com/rdaneel-ali/python-health-monitor/issues/11)
-- [ ] [Pre-Commit Hooks for Code Style](https://github.com/rdaneel-ali/python-health-monitor/issues/12)
-- [ ] [LocalStack AWS Integration](https://github.com/rdaneel-ali/python-health-monitor/issues/13)
-
-### Future Phases: Full-Fledged Monitoring System ([Milestone 3+: Planned](https://github.com/rdaneel-ali/python-health-monitor/milestone/3))
-This is the long-term vision to evolve the project into a complete monitoring framework.
-
-- [ ] **Monitoring Framework:** Extend the core logic to monitor other services (e.g., databases, storage, custom APIs).
-- [ ] **Alerting Integration:** Add a notification system using SNS to send alerts for failed checks.
-- [ ] **Metrics & Dashboards:** Integrate with CloudWatch Metrics to build a real-time monitoring dashboard.
-- [ ] **Comprehensive IaC:** Automate the full deployment of the entire serverless monitoring system (Lambda, API Gateway, S3, SNS).
-
-
-## Architecture
-
-### Design Principles
-
-**Configuration-Driven Design**
-- Externalized settings in YAML for flexibility without code changes
-- Environment-specific configs (development, staging, production)
-
-**Resilience Patterns**
-- Retry logic with configurable attempts and delays
-- Timeout handling to prevent hanging requests
-- Graceful degradation when endpoints fail
-
-**Observability**
-- Structured logging with multiple severity levels
-- File and console output for different use cases
-- Detailed error messages for troubleshooting
-
-**Modularity**
-- Single-responsibility functions for testability
-- Clear separation between configuration, execution, and reporting
-- Type hints for code clarity and IDE support
-
-### Error Handling Strategy
-
-The script handles network failures gracefully:
-- **Timeout errors**: Server too slow to respond
-- **Connection errors**: DNS/network issues
-- **HTTP errors**: Unexpected status codes
-- **Configuration errors**: Missing/invalid YAML files
-
-Each error type is logged with specific context for debugging.
-
-## Development
-
-### IDE Setup
-
-This project includes VS Code configuration for streamlined development:
-
-```json
-// .vscode/launch.json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Python: Local Debug",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal",
-      "justMyCode": true,
-      "env": {
-        "AWS_ACCESS_KEY_ID": "test",
-        "AWS_SECRET_ACCESS_KEY": "test",
-        "AWS_DEFAULT_REGION": "us-east-1",
-        "LOCALSTACK_HOST": "localhost",
-        "EDGE_PORT": "4566"
-      }
-    }
-  ]
-}
-```
-
-**Features:**
-- Pre-configured LocalStack environment variables
-- Debug support with breakpoints
-- Integrated terminal output
-- One-click debugging for any Python file
-
-### Running Tests
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov=monitor tests/
-
-# Run specific test files
-pytest tests/test_monitor.py
-```
-
-### Code Quality
-
-```bash
-# Format code
-black .
-
-# Lint code
-flake8 monitor.py tests/
-
-# Type checking (if using type hints)
-mypy monitor.py
-```
+## Engineering Practices
+| Practice | Mechanism |
+|----------|-----------|
+| Branch Naming | GitHub Action (`branch-name-check.yml`) |
+| Commit Convention | Commit-msg hook (regex validation) |
+| Formatting Enforcement | black + isort via pre-commit |
+| Hygiene | trailing whitespace / EOF / mixed line endings |
+| Security Hygiene | detect-private-key hook |
+| Lint Strictness | flake8 + bugbear (potential Ruff migration) |
+| Planned Static Types | mypy (gradual introduction) |
 
 ## Project Structure
-
+Core layout:
 ```
 python-health-monitor/
-├── src/                                # Source code for the package
-│   └── python_health_monitor/
-│       ├── __init__.py                 # Makes 'python_health_monitor' a Python package
-│       └── monitor.py                  # The core health monitoring script
-│
-├── tests/                              # Unit test suite
-│   ├── __init__.py                     # Makes the 'tests' directory a package
-│   ├── test_monitor.py                 # Tests for the core script logic
-│   └── test_config.py                  # Tests for the configuration loading logic
-│
-├── config/                             # Directory for configuration files
-│   └── config.yaml                     # The default configuration file
-│
-├── logs/                               # Log files are saved here
-│   └── .gitkeep                        # Ensures this empty directory is tracked by Git
-│
-├── .gitignore                          # Specifies files and directories to be ignored by Git
-├── pyproject.toml                      # The modern standard for Python project metadata
-├── README.md                           # The project overview and documentation
-└── LICENSE                             # Full text of the project's license
+├── src/python_health_monitor/
+│   └── monitor.py
+├── config/
+├── tests/
+├── pyproject.toml
+├── README.md
+└── LICENSE
 ```
+<details>
+<summary><strong>Development & Automation Files</strong></summary>
 
-## Usage Examples
-
-### Programmatic Usage
-
-```python
-# The import must now come from the installed package
-from python_health_monitor.monitor import main
-
-# To run the monitor with the default configuration, call main()
-# It will load 'config.yaml' from your project root.
-main()
-
-# To run with a specific configuration file, pass the arguments as a list.
-main(args=["--config", "config/production.yaml"])
 ```
-
-### Command Line Options
-
-```bash
-# Run with the default configuration
-python-health-monitor
-
-# Use a custom configuration file
-python-health-monitor --config /path/to/my/config.yaml
-
-# Show help for command-line options
-python-health-monitor --help
+.pre-commit-config.yaml
+CONTRIBUTING.md
+.flake8
+scripts/
+  └── validate_commit_msg.py
+.github/
+  ├── workflows/
+  │   ├── branch-name-check.yml
+  │   └── (CI workflows)
+  ├── pull_request_template.md
+  └── commit_template.txt
 ```
+</details>
 
-## Contributing
+## Issues & Planning Links
+- [Open Issues](https://github.com/rdaneel-ali/python-health-monitor/issues)
+- [Milestones](https://github.com/rdaneel-ali/python-health-monitor/milestones)
+- [Changelog](./CHANGELOG.md)
+- [Contributing Guide](./CONTRIBUTING.md)
+- [Roadmap Label](https://github.com/rdaneel-ali/python-health-monitor/issues?q=is%3Aopen+label%3Aroadmap)
+- [Good First Issues](https://github.com/rdaneel-ali/python-health-monitor/issues?q=is%3Aopen+label%3A%22good+first+issue%22)
+- [Help Wanted](https://github.com/rdaneel-ali/python-health-monitor/issues?q=is%3Aopen+label%3A%22help+wanted%22)
+- [Recently Updated](https://github.com/rdaneel-ali/python-health-monitor/issues?q=is%3Aopen+sort%3Aupdated-desc)
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Make your changes with tests
-4. Run the test suite (`pytest`)
-5. Commit your changes (`git commit -m 'Add new feature'`)
-6. Push to your branch (`git push origin feature/new-feature`)
-7. Create a Pull Request
+## Contributing (Snapshot)
+1. Create a branch: `phase-2/12-pre-commit-hooks`
+2. Run: `pip install -e '.[dev]'`
+3. Install hooks: `pre-commit install && pre-commit install --hook-type commit-msg`
+4. Validate: `pre-commit run --all-files && pytest`
+5. PR referencing an issue: `Resolves #12`
 
-### Development Guidelines
-- Maintain test coverage above 85%
-- Follow PEP 8 style guidelines
-- Add docstrings for public functions
-- Update documentation for new features
-- Test both success and failure scenarios
-
-## Deployment
-
-### Production Deployment
-```bash
-# Install the project and its production dependencies
-pip install .
-
-# Set up configuration
-cp config/config.yaml config/production.yaml
-# Edit production.yaml with your endpoints
-
-# Run with production config
-python -m python_health_monitor.monitor --config config/production.yaml
-```
-
-### Systemd Service (Linux)
-Create `/etc/systemd/system/health-monitor.service`:
-
-```ini
-[Unit]
-Description=Health Monitor Service
-After=network.target
-
-[Service]
-Type=simple
-User=monitor
-WorkingDirectory=/path/to/python-health-monitor
-ExecStart=/usr/bin/python3 monitor.py --config config/production.yaml
-Restart=always
-RestartSec=10
-
-[Install]
-WantedBy=multi-user.target
-```
+Full details: see [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## License
-
-Licensed under the GNU General Public License v2.0 (GPLv2) - see [LICENSE](LICENSE) file for details.
+GPL v2 – see [LICENSE](./LICENSE)
 
 ---
 
-**Have questions or ideas?** Feel free to open an issue or start a discussion!
+> Looking at this project for collaboration or evaluation? Feel free to open a discussion or issue; roadmap items are intentionally staged for incremental refinement.
