@@ -238,7 +238,7 @@ pip install -e .
 
 ## Project Status
 **Completed Milestones** ✅
-- ✅ **Foundational Codebase:** A robust and well-documented core application ([Issue #128](https://github.com/rdaneel-ali/python-health-monitor/issues/2)).
+- ✅ **Foundational Codebase:** A robust and well-documented core application (https://github.com/rdaneel-ali/python-health-monitor/issues/2).
 - ✅ **Test Coverage:** Comprehensive unit testing with `pytest` for reliability (https://github.com/rdaneel-ali/python-health-monitor/issues/3).
 - ✅ **Structured Logging:** For enhanced operational visibility (https://github.com/rdaneel-ali/python-health-monitor/issues/4).
 - ✅ **Packaging & CLI:** Packaged as a reusable Python module with a clean Command-Line Interface (https://github.com/rdaneel-ali/python-health-monitor/issues/5).
