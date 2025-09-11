@@ -475,24 +475,6 @@ RestartSec=10
 WantedBy=multi-user.target
 ```
 
-## Roadmap
-
-- [ ] **Phase 1**: Enhanced reporting and alerting
-  - [ ] Email notifications
-  - [ ] Slack/Teams webhook integration
-  - [ ] HTML report generation
-  - [ ] Secure credential management (.env files, AWS Secrets Manager)
-- [ ] **Phase 2**: Cloud integration
-  - [ ] LocalStack development environment setup
-  - [ ] AWS Lambda function development and testing
-  - [ ] CloudWatch metrics and alarms (LocalStack)
-  - [ ] Production AWS deployment automation
-  - [ ] S3 report storage
-- [ ] **Phase 3**: Advanced features
-  - [ ] Docker containerization
-  - [ ] Prometheus metrics export
-  - [ ] Web dashboard interface
-
 ## License
 
 Licensed under the GNU General Public License v2.0 (GPLv2) - see [LICENSE](LICENSE) file for details.
